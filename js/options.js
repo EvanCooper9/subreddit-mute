@@ -1,5 +1,7 @@
 let blacklist = document.getElementById('blacklist')
 let input = document.getElementById('newSubreddit')
+let addButton = document.getElementById('addButton')
+let nsfwToggle = document.getElementById('nsfw')
 
 function addItem() {
     let subreddit = input.value
@@ -30,11 +32,25 @@ function deleteItem(click) {
     })
 }
 
+function toggleNSFW() {
+    chrome.storage.sync.set({
+        hideNSFW: nsfwToggle.checked
+    })
+}
+
+function setNSFW() {
+    chrome.storage.sync.get(['hideNSFW'], function(result) {
+        let hideNSFW = result.hideNSFW
+        nsfwToggle.checked = hideNSFW
+    })
+}
+
 function restore() {
     fetch(function(result) {
         if (result == undefined) return
         setList(result)
     })
+    // setNSFW()
 }
 
 function setList(list) {
@@ -71,4 +87,6 @@ function fetch(callback) {
 }
 
 document.addEventListener('DOMContentLoaded', restore)
-document.getElementById('addButton').addEventListener('click', addItem)
+addButton.addEventListener('click', addItem)
+input.addEventListener('onkeydown', addItem)
+// nsfwToggle.addEventListener('click', toggleNSFW)
