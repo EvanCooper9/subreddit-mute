@@ -5,10 +5,7 @@ function addItem() {
     let subreddit = input.value
 
     fetch(function(result) {
-        var subreddits = result
-        if (subreddits == undefined) {
-            subreddits = []
-        }
+        var subreddits = (result == undefined) ? [] : result
 
         subreddits.push(subreddit)
         setList(subreddits)

@@ -28,7 +28,7 @@ function subreddit_mute() {
             console.log('Subreddit mute: Set the subreddits to mute in the options')
             return
         }
-        console.log('hiding posts from: ' + blacklist)
+        console.log('Subreddit mute: hiding posts from: ' + blacklist)
         Array.from(posts).forEach(function(post) {
             let subreddit = post.textContent.split('•')[0]
             if (blacklist.includes(subreddit)) {
