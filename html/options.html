@@ -3,12 +3,17 @@
         <title>Options</title>
     </head>
     <body>
-        Blacklist:
-        <input type="text" id="blacklist">
-        <button id="save">Save</button>
-        <br>
-        <p>Status</p>
-        <p id="status"></p>
+        <div>
+            <p>Blacklist</p>
+            <ul id="blacklist">
+                <li></li>
+            </ul>
+        </div>
+        <div>
+            <p>New Subreddit</p>
+            <input id="newSubreddit" type="text">
+            <button id="addButton">Add to Blacklist</button>
+        </div>
     </body>
     <script src="../js/options.js"></script>
 </html>
