@@ -1,6 +1,6 @@
 var posts = document.getElementsByClassName('Ywkt6EDfNWINeTr9lP29H')
 
-var blacklist = ['r/ProgrammerHumor']
+var blacklist = []
 var hiddenBlocks = []
 
 function hideElement(block) {
@@ -22,16 +22,18 @@ Array.prototype.remove = function(element) {
 }
 
 function subreddit_mute() {
-    Array.from(posts).forEach(function(post) {
-        let subreddit = post.textContent.split('•')[0]
-        if (blacklist.includes(subreddit)) {
-            let block = post.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement
-            hideElement(block)
-        } 
+    chrome.storage.sync.get('blacklist', function(result) {
+        blacklist = result.blacklist
+        console.log('hiding posts from: ' + blacklist)
+        Array.from(posts).forEach(function(post) {
+            let subreddit = post.textContent.split('•')[0]
+            if (blacklist.includes(subreddit)) {
+                let block = post.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement
+                hideElement(block)
+            } 
+        })
     })
 }
-
-subreddit_mute()
 
 // probably overkill, oh well..
 document.addEventListener('DOMNodeInserted', subreddit_mute)

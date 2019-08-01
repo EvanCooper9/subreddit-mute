@@ -2,7 +2,12 @@
     "name": "Subreddit mute",
     "version": "1.0",
     "description": "Temporarily hide certain subreddits from the home feed.",
+    "homepage_url": "https://github.com/EvanCooper9/subreddit-mute",
     "manifest_version": 2,
+    "options_ui": {
+        "page": "html/options.html",
+        "open_in_tab": false
+    },
     "content_scripts": [
         {
             "matches": [
