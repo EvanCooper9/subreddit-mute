@@ -24,6 +24,10 @@ Array.prototype.remove = function(element) {
 function subreddit_mute() {
     chrome.storage.sync.get('blacklist', function(result) {
         blacklist = result.blacklist
+        if (blacklist == null) {
+            console.log('Subreddit mute: Set the subreddits to mute in the options')
+            return
+        }
         console.log('hiding posts from: ' + blacklist)
         Array.from(posts).forEach(function(post) {
             let subreddit = post.textContent.split('•')[0]
